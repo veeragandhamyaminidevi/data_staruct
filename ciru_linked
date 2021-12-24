@@ -1,0 +1,152 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+  int data;
+  struct node*next;
+}*new,*temp;
+struct node*head=NULL;
+struct node*tail=NULL;
+void create()
+{
+  int i=1,n,val;
+  printf("enter n");
+  scanf("%d",&n);
+  while(i<=n)
+  {
+    new=(struct node*)malloc(sizeof(struct node));
+    printf("enter the val");
+    scanf("%d",&val);
+    if(head==NULL)
+    {
+      head=new;
+      tail=new;
+      head->data=val;
+      head->next=head;
+    }
+    else
+{
+  tail->next=new;
+  new->data=val;
+  tail=new;
+  tail->next=head;
+}
+i=i+1;
+  }
+}
+void ins_beg()
+{
+  int val1;
+  new=(struct node*)malloc(sizeof(struct node));
+  printf("ebter the ins vale");
+  scanf("%d",&val1);
+  new->data=val1;
+  new->next=head;
+  tail->next=new;
+  head=new;
+}
+void ins_end()
+{
+  int val2;
+  new=(struct node*)malloc(sizeof(struct node));
+  printf("enter the val2 for end");
+  scanf("%d",&val2);
+  new->data=val2;
+  tail->next=new;
+  tail=new;
+  tail->next=head;
+}
+void ins_pos()
+{
+  temp=head;
+  int val,pos,i=0;
+  printf("enter pos");
+  scanf("%d",&pos);
+  new=(struct node*)malloc(sizeof(struct node));
+  printf("enter val");
+  scanf("%d",&val);
+  for(i=0;i<pos-1;i++)
+  {
+    temp=temp->next;
+  }
+  new->data=val;
+  new->next=temp->next;
+  temp->next=new; 
+}
+void del_beg()
+{
+  temp=head;
+  head=head->next;
+  temp->next=NULL;
+  tail->next=head; 
+}
+void del_end()
+{
+  temp=head;
+  while(temp->next!=tail)
+  {
+    temp=temp->next;
+  }
+  tail=temp;
+  tail->next=head;
+}
+void del_pos()
+{
+  temp=head;
+  int pos,i;
+  printf("enter pos");
+  scanf("%d",&pos);
+  for(i=0;i<pos-1;i++)
+  {
+    temp=temp->next;
+  }
+  temp->next=temp->next->next;
+}
+void display()
+{
+  temp=head;
+  while(temp->next!=head)
+  {
+    printf("%d\n",temp->data);
+    temp=temp->next;
+  }
+  printf("%d\n",temp->data);
+}
+void main()
+{
+  int ch;
+  create();
+  printf(" 1. to disply \n 2.ins_beg \n 3.ins_end");
+  printf("4.ins_pos \n 5.del_beg \n 6.del_end\n 7.del_pos\n");
+  printf("enter ch");
+  scanf("%d",&ch);
+switch(ch)
+{
+case 1: display();
+        break;
+case 2:
+   ins_beg();
+   display();
+   break;
+case 3:
+   ins_end();
+   display();
+   break;
+case 4:
+   ins_pos();
+   display();
+   break;
+case 5:
+   del_beg();
+   display();
+   break;
+case 6:
+   del_end();
+   display();
+   break;
+case 7:
+   del_pos();
+   display();
+   break;
+}
+} 
