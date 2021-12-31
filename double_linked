@@ -1,0 +1,152 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+  int data;
+  struct node*next,*prev;
+}*new,*temp;
+struct node*head=NULL;
+struct node*tail=NULL;
+void create()
+{
+  int i=1,n,val;
+  printf("enter n");
+  scanf("%d",&n);
+  while(i<=n)
+  {
+    new=(struct node*)malloc(sizeof(struct node));
+    printf("enter val");
+    scanf("%d",&val);
+    if(head==NULL)
+    {
+      head=new;
+      tail=new;
+      head->data=val;
+      head->prev=NULL;
+      head->next=NULL;
+    }
+    else
+{
+  tail->next=new;
+  new->prev=temp;
+  new->data=val;
+  tail=new;
+  tail->next=NULL;
+}
+i=i+1;
+  }
+}
+void ins_beg()
+{
+  int val_beg;
+  new=(struct node*)malloc(sizeof(struct node));
+  printf("enter val to insert");
+  scanf("%d",&val_beg);
+  new->data=val_beg;
+  new->prev=NULL;
+  head->prev=new;
+  new->next=head;
+  head=new;
+}
+void ins_end()
+{
+  int val_end;
+  new=(struct node*)malloc(sizeof(struct node));
+  printf("enter val to ins end");
+  scanf("%d",&val_end);
+  new->data=val_end;
+  new->next=NULL;
+  tail->next=new;
+  new->prev=tail;
+  tail=new;
+}
+void ins_pos()
+{
+  temp=head;
+  int pos,val_pos,i;
+  printf("enter pos to insert");
+  scanf("%d",&pos);
+  new=(struct node*)malloc(sizeof(struct node));
+  printf("enter val to insert pos");
+  scanf("%d",&val_pos);
+  for(i=0;i<pos-1;i++)
+  {
+    temp=temp->next;
+  }
+  new->data=val_pos;
+  new->prev=temp;
+  new->next=temp->next;
+  temp->next=new;
+  temp->next->prev=new;
+}
+void del_beg()
+{
+ 
+  head=head->next;
+  head->prev=NULL;
+}
+void del_end()
+{
+  tail->prev->next=NULL;
+  tail=tail->prev;
+}
+void del_pos()
+{
+  temp=head;
+  int pos,i;
+  printf("enter pos to del");
+  scanf("%d",&pos);
+  for(i=0;i<pos-1;i++)
+  {
+    temp=temp->next;
+  }
+  temp->next->prev=temp;
+  temp->next=temp->next->next;
+}
+void display()
+{
+  temp=head;
+  while(temp!=NULL)
+  {
+    printf("%d\n",temp->data);
+    temp=temp->next;
+  }
+}
+void main()
+{
+  int ch;
+  create();
+  printf("1.display \n 2.ins_beg \n 3.ins_end \n ");
+  printf("4.ins_pos\n 5.del_beg \n 6.del_end\n 7.del_pos");
+  printf("enter ch");
+  scanf("%d",&ch);
+  switch(ch)
+  {
+    case 1: display();
+           break;
+  case 2:
+       ins_beg();
+       display();
+       break;
+  case 3:
+        ins_end();
+        display();
+        break;
+  case 4:
+         ins_pos();
+         display();
+         break;
+  case 5:
+         del_beg();
+         display();
+         break;
+  case 6:
+         del_end();
+         display();
+         break;
+  case 7:
+        del_pos();
+        display();
+        break;
+}
+} 
