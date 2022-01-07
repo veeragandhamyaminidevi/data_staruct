@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct hash
+{
+    int data;
+    struct hash*next;
+}*newn,*temp;
+struct hash*chain[];
+void init(int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        chain[i]=NULL;
+    }
+}
+void create(int n)
+{
+    int val,i,j=0;
+    while(j<n)
+    {
+    newn=(struct hash*)malloc(sizeof(struct hash));
+    printf("enter val");
+    scanf("%d",&val);
+    newn->data=val;
+    newn->next=NULL;
+    i=val%n;
+    if(chain[i]==NULL)
+    {
+        chain[i]=newn;
+    }
+    else
+    {
+        temp=chain[i];
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        temp->next=newn;
+    }
+    j=j+1;
+    }
+}
+void display(int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        temp=chain[i];
+        printf("chain[%d]->",i);
+        while(temp!=NULL)
+        {
+            printf("%d->",temp->data);
+            temp=temp->next;
+        }
+        printf("\n");
+    }
+}
+void search(int n)
+{
+    int i,ele;
+    printf("enter element to search");
+    scanf("%d",&ele);
+    for(i=0;i<n;i++)
+    {
+        temp=chain[i];
+        while(temp!=NULL)
+        {
+            if(temp->data==ele)
+            {
+                printf("element is found");
+            }
+            temp=temp->next;
+        }
+    }
+}
+void main()
+{
+    int n;
+    printf("enter the size of n");
+    scanf("%d",&n);
+    init(n);
+    create(n);
+    display(n);
+    search(n);
+}
+
