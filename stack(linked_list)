@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*next;
+}*newn,*temp,*top=NULL;
+void push(int n)
+{
+   int val,i=1;
+   while(i<=n)
+   {
+   newn=(struct node*)malloc(sizeof(struct node));
+   printf("enter the val");
+   scanf("%d",&val);
+   newn->data=val;
+   newn->next=NULL;
+   if(top==NULL)
+   {
+       top=newn;
+   }
+   else
+   {
+       newn->next=top;
+       top=newn;
+   }
+   i=i+1;
+   }
+}
+void pop()
+{
+    temp=top;
+   top=top->next;
+   temp->next=NULL;
+   
+}
+void display()
+{
+    temp=top;
+    while(temp!=NULL)
+    {
+        printf("%d->",temp->data);
+        temp=temp->next;
+    }
+}
+void main()
+{
+    int n;
+    printf("enter the n");
+    scanf("%d",&n);
+    push(n);
+    display();
+    pop();
+    display();
+}
+
