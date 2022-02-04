@@ -1,0 +1,71 @@
+#include <stdio.h>
+int top=-1;
+#define n 20
+int s[];
+void push()
+{
+    int a;
+    if(top>=n-1)
+    {
+        printf("stack is overflow\n");
+    }
+    else
+    {
+        printf("enter the element in to stack");
+        scanf("%d",&a);
+        top=top+1;
+        s[top]=a;
+    }
+}
+void pop()
+{
+    if(top<0)
+    {
+        printf("stack is underflow");
+    }
+    else
+    {
+        printf("poped elemnt is %d",s[top]);          
+        top=top-1;
+    }
+}
+void display()
+{
+    int i;
+    for(i=top;i>=0;i--)
+    {
+        printf("%d\n",s[i]);
+    }
+}
+void peak()
+{
+    printf("top of the elment in the stack %d",s[top]);
+}
+void main()
+{
+    int ch;
+    while(1)
+    {
+        printf("enter the char");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:push();
+                   break;
+            case 2:pop();
+                   break;
+            case 3:peak();
+                   break;
+            default:exit(0);           
+       
+        }
+         display();
+    }
+    
+}
+
+
+
+
+
+
