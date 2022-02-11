@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<string.h>
+int top=-1;
+#define n 10
+int s[n];
+void push(char a)
+{
+    if(top>=n-1)
+    {
+        printf("stsck is overflow\n");
+    }
+    else
+    {
+        top=top+1;
+        s[top]=a;
+    }
+}
+int pop()
+{
+    int k;
+    if(top<0)
+    {
+        printf("stack is underflow\n");
+        
+    }
+    else
+    {
+        k=s[top];
+        top=top-1;
+    return k;
+    }
+}
+void postfix_eval(char postfix[])
+{
+    char ch;
+    int i=0,a,b,r;
+    for(i=0;postfix[i]!='\0';i++)
+    {
+        ch=postfix[i];
+        if(isdigit(ch))
+        {
+            push(ch-'0');
+        }
+        else
+        if(ch=='%'||ch=='^'||ch=='*'||ch=='+'||ch=='-'||ch=='/')
+        {
+            b=pop();
+            a=pop();
+            switch(ch)
+            {
+                case '*':r=a*b;
+                       break;
+                case '^':r=a^b;
+                         break;
+                case '%':r=a%b;
+                         break;
+                case '+':r=a+b;
+                         break;
+                case '-':r=a-b;
+                          break;
+               case '/':r=a/b;
+                         break;
+            }
+            push(r);
+        }
+    }
+    printf("resultant expression is%d",pop());
+}
+void main()
+{
+    char postfix[n];
+    printf("enter the postfix expression\n");
+    gets(postfix);
+    postfix_eval(postfix);
+}
