@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*next;
+}*newn,*f=NULL,*r=NULL,*temp;
+void enqueu()
+{
+    int c;
+    newn=(struct node*)malloc(sizeof(struct node));
+    printf("enter num into queue\n");
+    scanf("%d",&c);
+    newn->data=c;
+    newn->next=NULL;
+    if(f==NULL)
+    {
+        f=newn;
+        r=newn;
+        f->next=f;
+    }
+    else
+    {
+        r->next=newn;
+        r=newn;
+        r->next=f;
+    }
+}
+void dequeue()
+{
+    temp=f;
+    if(f==NULL&&r==NULL)
+    {
+        printf("queue is empty");
+    }
+    else
+    {
+        printf("the poped elemnt is%d\n",temp->data);
+        f=f->next;
+        temp->next=NULL;
+        r->next=f;
+    }
+}
+void display()
+{
+    temp=f;
+    while(temp->next!=f)
+    {
+        printf("%d-\n",temp->data);
+        temp=temp->next;
+    }
+    printf("%d\n",temp->data);
+}
+void main()
+{
+    int ch;
+    while(1)
+    {
+        printf("enter num into switch statement\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:enqueu();
+                   break;
+            case 2: dequeue();
+                     break;
+            case 3:display();
+                    break;
+          default:exit(0);
+        }
+    }
+}                                                               
+
+
