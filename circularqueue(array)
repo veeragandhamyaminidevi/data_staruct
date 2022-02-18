@@ -55,7 +55,7 @@ void main()
                    break;
             case 3:display();
                     break;
-            default:exit;        
+            default:exit(0);        
         }
     }
 }
