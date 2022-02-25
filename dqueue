@@ -1,0 +1,129 @@
+#include<stdio.h>
+#include<string.h>
+#define n 5
+int q[n],c=0;
+int f=0,r=0;
+void enquerare(int x)
+{
+    if((f==0&&r==n)||f==r+1||c==n)
+    {
+        printf("filled");
+    }
+    else if(r==n)
+    {
+        r=0;
+     
+        q[r]=x ;
+        c=c+1;
+        
+    }
+    else
+    {
+        
+      q[r]=x;
+       c=c+1;
+      r=r+1;
+    }
+}
+void dequqefront()
+{
+    if((f==0&&r==0&&c==0)||f==r)
+    {
+        printf("queue is empty");
+    }
+    else if(f==n)
+    {
+        f=0;
+        printf("the poped elemnt is %d",q[f]);
+        c=c-1;
+    }
+    else
+    {
+         c=c-1; 
+        printf("the poped elemnt is %d",q[f]);
+        f=f+1;
+       
+    }
+}
+void dequeuerare()
+{
+    if(f==0&&r==0&&c==0)
+    {
+        printf("empty");
+    }
+    else if(r==f)
+    {
+       
+        printf("the poped elemnt is %d",q[r]);
+         r=0;
+        f=0;
+        c=c-1;
+    }
+    else
+    { 
+        r=r-1;
+    c=c-1;
+        printf("poped elemnt is%d",q[r]);
+       
+        
+    }
+}
+void enquqefront(int a)
+{
+    if((f==0&&r==n)||f==r+1||c==n)
+    {
+        printf("filled");
+    }
+    else if(f==0)
+    {
+       
+        f=n-1;
+          c=c+1;
+        q[f]=a;
+       
+    }
+    else
+    {
+        f=f-1;
+         c=c+1;
+        q[f]=a;
+        
+    }
+}
+void display()
+{
+    int i=0;
+    for(i=f;i<c;i++)
+    {
+        printf("elemtes are %d",q[i]);
+    }
+   
+}
+void main()
+{
+    int b,ch;
+    while(1)
+    {
+        printf("enter the char to switch");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:printf("enter b");
+                   scanf("%d",&b);
+                   enquerare(b);
+                   break;
+           case 2: dequqefront();
+                   break;
+          case 3:dequeuerare();
+                  break;
+         case 4:printf("enter b");
+                   scanf("%d",&b);
+                   enquqefront(b);
+                   break;
+        case 5:display();
+               break;
+        default:exit(0);
+        }
+    }
+}
+
