@@ -159,3 +159,20 @@ void main()
         default:printf("Exit");
     }
 }
+enter root value
+20
+Enter the no of nodes to want to insert6
+enter value:20
+enter value:2
+enter value:3
+enter value:4
+enter value:6
+enter value:5
+Enter the no of nodes to delete1
+enter value:3
+1-inorder
+2-preorder
+3-postorder
+Enter the choice2
+Preorder traversal is:
+ 20  20  2  4  6  5 
